@@ -4,6 +4,9 @@ var currentHour = currentTime.hour();
 var pageEl = $("#base");
 var schedule = {};
 storedSchedule = JSON.parse(localStorage.getItem("schedule"));
+if (storedSchedule) {
+  schedule = storedSchedule;
+}
 console.log(storedSchedule);
 
 // Function wrapped in JQuery to defer until html elements are loaded.
@@ -31,7 +34,7 @@ $(function () {
   });
 
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
+  // Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. 
   if (storedSchedule) {
     $(".time-block").each(function (index) {
@@ -45,5 +48,8 @@ $(function () {
     })
   }
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // Add code to display the current date in the header of the page.
+  currentDate = currentTime.format("YYYY-MM-DD")
+  dateEl = $("#currentDay");
+  $(dateEl).text(currentDate);
 });
