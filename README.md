@@ -21,6 +21,7 @@ git clone git@github.com:error201/WorkDayScheduler.git
 
 ## Usage
 
+Visit [WorkDayScheduler.](https://error201.github.io/WorkDayScheduler/)
 Simply click on the block of time you wish to schedule, enter the details, and click the save button.
 
 ![alt text](assets/images/screenshot.png)
