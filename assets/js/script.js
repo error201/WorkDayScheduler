@@ -3,7 +3,8 @@ var currentTime = dayjs();
 var currentHour = currentTime.hour();
 var pageEl = $("#base");
 var schedule = {};
-var storedSchedule = JSON.parse(localStorage.getItem("schedule"));
+storedSchedule = JSON.parse(localStorage.getItem("schedule"));
+console.log(storedSchedule);
 
 // Function wrapped in JQuery to defer until html elements are loaded.
 $(function () {
@@ -25,17 +26,24 @@ $(function () {
     var currentTextEl = $(buttonParentEl).children().eq(1);
     var parentElId = $(buttonParentEl).attr("id");
     enteredText = currentTextEl[0].value;
-    console.log(parentElId);
-    console.log(enteredText);
     schedule[parentElId] = enteredText;
-    localStorage.setItem(schedule, JSON.stringify(schedule));
+    localStorage.setItem("schedule", JSON.stringify(schedule));
   });
 
 
   // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
+  // the values of the corresponding textarea elements. 
+  if (storedSchedule) {
+    $(".time-block").each(function (index) {
+      var currentId = $(this).attr("id")
+      var textEl = $(this).children().eq(1)[0];
+      for ([key, value] of Object.entries(storedSchedule)) {
+        if (key == currentId) {
+          $(textEl).text(value);
+        };
+      }
+    })
+  }
   //
   // TODO: Add code to display the current date in the header of the page.
 });
